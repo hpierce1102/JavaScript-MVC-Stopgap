@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="template.js"></script>
+        <script src="sandbox.model.js"></script>
+        <script src="sandbox.controller.js"></script>
+        <script>
+            var model = new Sandbox({
+                badShapes : [ {
+                    id : 1,
+                    name : 'Triangle'
+                }, {
+                    id : 2,
+                    name : 'Rectangle'
+                }
+                ],
+                goodShapes : [{
+                    id : 3,
+                    name : 'Octogon'
+                }]
+            });
+
+            var controller = new SandboxController(model);
+
+            window.onload = function() {
+                controller.renderBadShapes();
+                controller.renderGoodShapes();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Bad Shapes</h1>
+        <ul id="badShapeContainer">
+            <script> badShapeTemplate = new Template('<li>{{shape.name}}</li><a href="#" onClick="controller.onClick_MakeGood(\'{{shape.id}}\')">Make Good</a>'); </script>
+        </ul>
+
+        <h1>Good Shapes</h1>
+        <ul id="goodShapeContainer">
+            <script> goodShapeTemplate = new Template('<li>{{shape.name}}<a href="#" onClick="controller.onClick_MakeBad(\'{{shape.id}}\')">Make Bad</a></li>'); </script>
+        </ul>
+    </body>
+</html>
