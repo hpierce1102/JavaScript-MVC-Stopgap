@@ -1,4 +1,5 @@
 (function() {
+
     var _ = self.Sandbox = function(initialState) {
         this.badShapes = initialState.badShapes;
         this.goodShapes = initialState.goodShapes;
@@ -13,6 +14,8 @@
                     break;
                 }
             }
+
+            this.notifySubscribers();
         },
 
         makeBadShape : function(shapeId) {
@@ -23,6 +26,10 @@
                     break;
                 }
             }
+
+            this.notifySubscribers();
         }
-    }
+    };
+
+    _.prototype.__proto__ = new ModelBase();
 })();
